@@ -205,6 +205,7 @@ document.querySelectorAll('.secao-eixo').forEach(secao => {
   const areasEl = document.getElementById('areas');
   if (areasEl) areasEl.classList.add('visivel');
   configurarCards();
+  carregarAnexos();
 })();
 
 function configurarCards() {
@@ -221,6 +222,28 @@ function configurarCards() {
       img.parentElement.classList.add('sem-img');
     });
   });
+}
+
+// Anexos
+function carregarAnexos() {
+  const container = document.getElementById('anexos-dinamicos');
+  if (!container) return;
+
+  const anexos = [
+    { nome: 'Currículo', descricao: 'Meu currículo atualizado', icone: '📄', link: './CV/GABRIEL FEITOSA FREITAS DE MORAIS.docx.pdf' },
+    { nome: 'Certificados', descricao: 'Certificados de conclusão', icone: '📜', link: '#' },
+    { nome: 'Projetos', descricao: 'Documentação de projetos', icone: '📁', link: '#' }
+  ];
+
+  container.innerHTML = anexos.map(anexo => `
+    <a href="${anexo.link}" class="anexo-card" ${anexo.link !== '#' ? 'download' : ''} target="_blank">
+      <div class="anexo-icon">${anexo.icone}</div>
+      <div class="anexo-info">
+        <h4>${anexo.nome}</h4>
+        <p>${anexo.descricao}</p>
+      </div>
+    </a>
+  `).join('');
 }
 
 // Verificação de Sessão
