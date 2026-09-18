@@ -5,7 +5,7 @@ const token = localStorage.getItem('token');
 const usuario = JSON.parse(localStorage.getItem('usuario') || 'null');
 
 if (!token || usuario?.role !== 'admin') {
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
 }
 
 let usuarios = [];
@@ -29,7 +29,7 @@ async function api(path, opts = {}) {
 
     if (resp.status === 401) {
         localStorage.clear();
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
         return;
     }
 
@@ -143,7 +143,7 @@ document.getElementById('form-usuario').addEventListener('submit', async e => {
 
 document.getElementById('btn-sair').addEventListener('click', () => {
     localStorage.clear();
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
 });
 
 // Inicialização
