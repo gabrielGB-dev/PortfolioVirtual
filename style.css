@@ -136,8 +136,8 @@ section {
 }
 
 .hero-foto img {
-    width: 699px;
-    max-width: 699px;
+    width: 480px;
+    max-width: 480px;
     border-radius: 32px;
     display: block;
 }
