@@ -244,7 +244,10 @@ function configurarCards() {
 
   if (usuario.role === 'admin') {
     const linkAdmin = document.getElementById('link-admin');
-    if (linkAdmin) linkAdmin.style.display = 'inline-block';
+    if (linkAdmin) {
+      linkAdmin.href = 'admin.html?token=' + encodeURIComponent(token);
+      linkAdmin.style.display = 'inline-block';
+    }
   }
 
   const linkSair = document.getElementById('link-sair');

@@ -36,8 +36,26 @@ app.options('*', cors());
 
 app.use(express.json());
 
-// Rota de status da API
-app.get('/', (req, res) => res.json({ status: 'API rodando com sucesso no Render.com com Supabase!' }));
+// Rota raiz redireciona para o login
+app.get('/', (req, res) => res.redirect('/login.html'));
+
+// Proteger admin.html - exige token válido via query string
+app.get('/admin.html', (req, res, next) => {
+    const token = req.query.token;
+    if (!token) return res.redirect('/login.html');
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        if (decoded.role !== 'admin') return res.redirect('/login.html');
+        next();
+    } catch {
+        res.redirect('/login.html');
+    }
+});
+
+// Servir arquivos estáticos (HTML, CSS, JS, imagens, etc.)
+app.use(express.static(path.join(__dirname), {
+    index: 'login.html'
+}));
 
 // Pool de conexão PostgreSQL (Supabase)
 const pool = new Pool({
