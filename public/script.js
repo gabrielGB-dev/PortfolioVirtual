@@ -1,5 +1,5 @@
 // Substitua pela URL da sua API no Render
-const API_URL = 'https://seu-backend.onrender.com';
+const API_URL = 'https://portfoliovirtual.onrender.com';
 
 // Elementos
 const header = document.getElementById('header');
