@@ -18,12 +18,21 @@ const app = express();
 
 app.use(helmet({ contentSecurityPolicy: false }));
 
-// Permite requisições do GitHub Pages ou localhost
-const FRONTEND_URL = process.env.FRONTEND_URL || '*';
+// ============================================================
+// CONFIGURAÇÃO AJUSTADA DE CORS
+// ============================================================
 app.use(cors({
-    origin: FRONTEND_URL === '*' ? '*' : [FRONTEND_URL, 'http://localhost:3000', 'http://127.0.0.1:5500'],
-    credentials: true
+    origin: function (origin, callback) {
+        // Permite requisições sem origem (Postman, curl) ou de qualquer domínio do GitHub Pages/Localhost
+        return callback(null, true);
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+// Responde às requisições preflight do navegador imediatamente
+app.options('*', cors());
 
 app.use(express.json());
 
