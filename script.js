@@ -246,6 +246,21 @@ function carregarAnexos() {
   `).join('');
 }
 
+// Anexo Colapsável
+document.querySelectorAll('.anexo-container').forEach(container => {
+  const titulo = container.querySelector('h3');
+  if (!titulo) return;
+  titulo.setAttribute('role', 'button');
+  titulo.setAttribute('tabindex', '0');
+  titulo.addEventListener('click', () => container.classList.toggle('colapsado'));
+  titulo.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      container.classList.toggle('colapsado');
+    }
+  });
+});
+
 // Verificação de Sessão
 (function verificarSessao() {
   const token = localStorage.getItem('token');
