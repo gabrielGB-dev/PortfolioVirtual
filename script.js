@@ -135,12 +135,14 @@ if (tabela) {
 }
 
 // Form Contato
-formulario.addEventListener('submit', e => {
-  e.preventDefault();
-  toast.classList.add('mostrar');
-  formulario.reset();
-  setTimeout(() => toast.classList.remove('mostrar'), 3500);
-});
+if (formulario) {
+  formulario.addEventListener('submit', e => {
+    e.preventDefault();
+    toast.classList.add('mostrar');
+    formulario.reset();
+    setTimeout(() => toast.classList.remove('mostrar'), 3500);
+  });
+}
 
 // Fallback da Foto
 const foto = document.getElementById('foto-gabriel');
@@ -237,6 +239,7 @@ function configurarCards() {
 // Verificação de Sessão
 (function verificarSessao() {
   const token = localStorage.getItem('token');
+
   if (!token || !usuario) {
     window.location.href = 'login.html';
     return;
