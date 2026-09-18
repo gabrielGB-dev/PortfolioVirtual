@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="topo-painel">
+        <h1>Painel Administrativo</h1>
+        <button id="btn-sair" class="btn btn-perigo">Sair</button>
+    </header>
+
+    <main class="container">
+        <nav class="tabs">
+            <button type="button" class="tab ativo" data-tab="usuarios">Usuários</button>
+        </nav>
+        <section id="tab-usuarios" class="tab-content ativo">
+            <div class="admin-grid">
+                <form id="form-usuario" class="card">
+                    <h2>Usuário</h2>
+                    <input type="hidden" id="usuario-id">
+                    <label>Tipo
+                        <select id="usuario-tipo">
+                            <option value="professor">Professor</option>
+                            <option value="estudante">Estudante</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </label>
+                    <label>Nome<input type="text" id="usuario-nome" required></label>
+                    <label>E-mail<input type="email" id="usuario-email" required></label>
+                    <label>Senha<input type="password" id="usuario-senha" placeholder="Mínimo 8 caracteres"></label>
+                    <label class="checkbox"><input type="checkbox" id="usuario-ativo" checked> Ativo</label>
+                    <div class="acoes-modal">
+                        <button type="button" id="btn-cancelar-usuario" class="btn btn-secundario">Cancelar</button>
+                        <button type="submit" class="btn">Salvar</button>
+                    </div>
+                </form>
+
+                <div class="card table-wrap">
+                    <h2>Usuários cadastrados</h2>
+                    <div class="filtro-usuarios">
+                        <select id="filtro-tipo-usuario">
+                            <option value="professor">Professores</option>
+                            <option value="estudante">Estudantes</option>
+                            <option value="admin">Admins</option>
+                        </select>
+                        <button type="button" id="btn-listar-usuarios" class="btn">Listar</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>E-mail</th>
+                                <th>Ativo</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-usuarios"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>
