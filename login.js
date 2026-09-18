@@ -22,7 +22,7 @@ function logar(event) {
             localStorage.setItem('token', dados.token);
             localStorage.setItem('usuario', JSON.stringify(dados.usuario));
 
-            window.location.href = 'index.html';
+            window.location.href = 'login.html';
         })
         .catch(err => {
             erroLogin.textContent = err.message;
