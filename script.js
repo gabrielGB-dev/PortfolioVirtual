@@ -112,7 +112,7 @@ lightboxFechar.addEventListener('click', fecharLightbox);
 lightbox.addEventListener('click', e => { if (e.target === lightbox) fecharLightbox(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') fecharLightbox(); });
 
-// Tabela de Horários
+// tabela horários
 const tabela = document.querySelector('.tabela-horarios');
 if (tabela) {
   const agora = new Date();
