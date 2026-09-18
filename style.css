@@ -105,6 +105,19 @@ section {
     transform: translateY(0);
 }
 
+@keyframes revealFallback {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (scripting: none) {
+    [data-reveal] {
+        animation: revealFallback 0.6s ease forwards;
+    }
+}
+
 .hero {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;

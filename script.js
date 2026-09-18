@@ -17,7 +17,12 @@ const lightboxAtividade = document.getElementById('lightbox-atividade');
 const lightboxProf = document.getElementById('lightbox-prof');
 const lightboxFechar = document.getElementById('lightbox-fechar');
 
-const usuario = JSON.parse(localStorage.getItem('usuario') || 'null');
+let usuario;
+try {
+  usuario = JSON.parse(localStorage.getItem('usuario') || 'null');
+} catch {
+  usuario = null;
+}
 
 // Menu
 hamburguer.addEventListener('click', () => {
@@ -70,6 +75,12 @@ const observerReveal = new IntersectionObserver(entradas => {
   });
 }, { threshold: 0.15 });
 document.querySelectorAll('[data-reveal]').forEach(el => observerReveal.observe(el));
+
+setTimeout(() => {
+  document.querySelectorAll('[data-reveal]:not(.visivel)').forEach(el => {
+    el.classList.add('visivel');
+  });
+}, 3000);
 
 // Lightbox
 function abrirLightbox(card) {
