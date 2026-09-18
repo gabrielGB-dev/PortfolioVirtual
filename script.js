@@ -205,7 +205,6 @@ document.querySelectorAll('.secao-eixo').forEach(secao => {
   const areasEl = document.getElementById('areas');
   if (areasEl) areasEl.classList.add('visivel');
   configurarCards();
-  carregarAnexos();
 })();
 
 function configurarCards() {
@@ -223,72 +222,6 @@ function configurarCards() {
     });
   });
 }
-
-// Anexos
-function carregarAnexos() {
-  const container = document.getElementById('anexos-dinamicos');
-  if (!container) return;
-
-  const categorias = [
-    {
-      nome: 'Currículos',
-      icone: '📄',
-      anexos: [
-        { nome: 'Currículo Atualizado', descricao: 'Meu currículo atualizado', link: './CV/GABRIEL FEITOSA FREITAS DE MORAIS.docx.pdf' }
-      ]
-    },
-    {
-      nome: 'Certificados',
-      icone: '📜',
-      anexos: [
-        { nome: 'Certificado SENAI', descricao: 'Certificado de conclusão do curso', link: '#' },
-        { nome: 'Certificado SESI', descricao: 'Certificado escolar', link: '#' }
-      ]
-    },
-    {
-      nome: 'Projetos',
-      icone: '📁',
-      anexos: [
-        { nome: 'Projeto Final', descricao: 'Documentação do projeto integrador', link: '#' }
-      ]
-    }
-  ];
-
-  container.innerHTML = categorias.map(categoria => `
-    <div class="anexo-item colapsado">
-      <h3>${categoria.icone} ${categoria.nome}</h3>
-      <div class="anexo-conteudo">
-        <div class="anexos-grid">
-          ${categoria.anexos.map(anexo => `
-            <a href="${anexo.link}" class="anexo-card" ${anexo.link !== '#' ? 'download' : ''} target="_blank">
-              <div class="anexo-icon">${categoria.icone}</div>
-              <div class="anexo-info">
-                <h4>${anexo.nome}</h4>
-                <p>${anexo.descricao}</p>
-              </div>
-            </a>
-          `).join('')}
-        </div>
-      </div>
-    </div>
-  `).join('');
-
-  // Configurar anexos colapsáveis após gerar o HTML
-  document.querySelectorAll('.anexo-item').forEach(item => {
-    const titulo = item.querySelector('h3');
-    if (!titulo) return;
-    titulo.setAttribute('role', 'button');
-    titulo.setAttribute('tabindex', '0');
-    titulo.addEventListener('click', () => item.classList.toggle('colapsado'));
-    titulo.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        item.classList.toggle('colapsado');
-      }
-    });
-  });
-}
-});
 
 // Verificação de Sessão
 (function verificarSessao() {
