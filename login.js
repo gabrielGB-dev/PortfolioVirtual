@@ -22,11 +22,7 @@ function logar(event) {
             localStorage.setItem('token', dados.token);
             localStorage.setItem('usuario', JSON.stringify(dados.usuario));
 
-            if (dados.usuario.role === 'admin') {
-                window.location.href = 'admin.html?token=' + encodeURIComponent(dados.token);
-            } else {
-                window.location.href = 'index.html';
-            }
+            window.location.href = 'index.html';
         })
         .catch(err => {
             erroLogin.textContent = err.message;
