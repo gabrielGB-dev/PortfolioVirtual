@@ -791,11 +791,11 @@ dialog::backdrop {
 }
 
 /* Anexos */
-.anexo-container {
+.anexo-item {
     margin: 34px 0;
 }
 
-.anexo-container > h3 {
+.anexo-item > h3 {
     cursor: pointer;
     user-select: none;
     display: flex;
@@ -807,40 +807,40 @@ dialog::backdrop {
     transition: background 0.2s ease;
 }
 
-.anexo-container > h3:hover {
+.anexo-item > h3:hover {
     background: rgba(141, 118, 245, 0.08);
 }
 
-.anexo-container > h3::after {
+.anexo-item > h3::after {
     content: '▾';
     font-size: 0.9rem;
     margin-left: auto;
     transition: transform 0.3s ease;
 }
 
-.anexo-container.colapsado > h3::after {
+.anexo-item.colapsado > h3::after {
     transform: rotate(-90deg);
 }
 
-.anexo-container > #anexos-dinamicos {
+.anexo-item > .anexo-conteudo {
     overflow: hidden;
     max-height: 3000px;
     transition: max-height 0.4s ease, opacity 0.3s ease;
     opacity: 1;
 }
 
-.anexo-container.colapsado > #anexos-dinamicos {
+.anexo-item.colapsado > .anexo-conteudo {
     max-height: 0;
     opacity: 0;
     margin: 0;
     padding: 0;
 }
 
-#anexos-dinamicos {
+.anexos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 18px;
-    margin-top: 24px;
+    margin-top: 16px;
 }
 
 .anexo-card {

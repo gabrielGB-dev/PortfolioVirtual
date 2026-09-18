@@ -229,36 +229,65 @@ function carregarAnexos() {
   const container = document.getElementById('anexos-dinamicos');
   if (!container) return;
 
-  const anexos = [
-    { nome: 'Currículo', descricao: 'Meu currículo atualizado', icone: '📄', link: './CV/GABRIEL FEITOSA FREITAS DE MORAIS.docx.pdf' },
-    { nome: 'Certificados', descricao: 'Certificados de conclusão', icone: '📜', link: '#' },
-    { nome: 'Projetos', descricao: 'Documentação de projetos', icone: '📁', link: '#' }
+  const categorias = [
+    {
+      nome: 'Currículos',
+      icone: '📄',
+      anexos: [
+        { nome: 'Currículo Atualizado', descricao: 'Meu currículo atualizado', link: './CV/GABRIEL FEITOSA FREITAS DE MORAIS.docx.pdf' }
+      ]
+    },
+    {
+      nome: 'Certificados',
+      icone: '📜',
+      anexos: [
+        { nome: 'Certificado SENAI', descricao: 'Certificado de conclusão do curso', link: '#' },
+        { nome: 'Certificado SESI', descricao: 'Certificado escolar', link: '#' }
+      ]
+    },
+    {
+      nome: 'Projetos',
+      icone: '📁',
+      anexos: [
+        { nome: 'Projeto Final', descricao: 'Documentação do projeto integrador', link: '#' }
+      ]
+    }
   ];
 
-  container.innerHTML = anexos.map(anexo => `
-    <a href="${anexo.link}" class="anexo-card" ${anexo.link !== '#' ? 'download' : ''} target="_blank">
-      <div class="anexo-icon">${anexo.icone}</div>
-      <div class="anexo-info">
-        <h4>${anexo.nome}</h4>
-        <p>${anexo.descricao}</p>
+  container.innerHTML = categorias.map(categoria => `
+    <div class="anexo-item colapsado">
+      <h3>${categoria.icone} ${categoria.nome}</h3>
+      <div class="anexo-conteudo">
+        <div class="anexos-grid">
+          ${categoria.anexos.map(anexo => `
+            <a href="${anexo.link}" class="anexo-card" ${anexo.link !== '#' ? 'download' : ''} target="_blank">
+              <div class="anexo-icon">${categoria.icone}</div>
+              <div class="anexo-info">
+                <h4>${anexo.nome}</h4>
+                <p>${anexo.descricao}</p>
+              </div>
+            </a>
+          `).join('')}
+        </div>
       </div>
-    </a>
+    </div>
   `).join('');
-}
 
-// Anexo Colapsável
-document.querySelectorAll('.anexo-container').forEach(container => {
-  const titulo = container.querySelector('h3');
-  if (!titulo) return;
-  titulo.setAttribute('role', 'button');
-  titulo.setAttribute('tabindex', '0');
-  titulo.addEventListener('click', () => container.classList.toggle('colapsado'));
-  titulo.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      container.classList.toggle('colapsado');
-    }
+  // Configurar anexos colapsáveis após gerar o HTML
+  document.querySelectorAll('.anexo-item').forEach(item => {
+    const titulo = item.querySelector('h3');
+    if (!titulo) return;
+    titulo.setAttribute('role', 'button');
+    titulo.setAttribute('tabindex', '0');
+    titulo.addEventListener('click', () => item.classList.toggle('colapsado'));
+    titulo.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        item.classList.toggle('colapsado');
+      }
+    });
   });
+}
 });
 
 // Verificação de Sessão
